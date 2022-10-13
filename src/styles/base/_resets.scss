@@ -1,0 +1,40 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--Light-theme-text);
+  background-color: var(--Light-theme-background);
+  transition: 0.5s ease-in;
+}
+
+footer {
+  margin-top: 4.5rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.completed {
+  display: none;
+}
+
+.active {
+  display: none;
+}
+
+.all {
+  display: block;
+}

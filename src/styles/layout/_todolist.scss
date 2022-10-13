@@ -1,0 +1,252 @@
+@use "../abstracts/" as a;
+
+#list {
+  list-style: none;
+}
+
+.list-item {
+  background-color: #fff;
+  padding: 1.75rem 1.25rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--Light-theme-border-color);
+  transition: 0.5 ease-in;
+  cursor: move;
+  @include a.flex-row-space-between;
+  @include a.tablet {
+    padding: 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+.list-item-label {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.list-item-text {
+  color: var(--Light-theme-list-text);
+  cursor: pointer;
+  padding-left: 2rem;
+}
+
+.list-item-text::before {
+  position: absolute;
+  left: 0rem;
+  top: -0.3rem;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--Light-theme-border-color);
+  margin-right: 0.75rem;
+  z-index: 2;
+  @include a.tablet {
+    top: -0.25rem;
+  }
+}
+
+.list-item-text::after {
+  content: url("../images/icon-check.svg");
+  position: absolute;
+  top: 0;
+  left: 0.3rem;
+  cursor: pointer;
+  display: none;
+  z-index: 5;
+  @include a.tablet {
+    top: -0.175rem;
+  }
+}
+
+.checkbox-background {
+  @include a.tablet {
+    height: 22px;
+    width: 22px;
+    background: var(--Check-Background);
+    position: absolute;
+    top: -0.3rem;
+    left: -0.05rem;
+    border-radius: 50%;
+    display: none;
+  }
+}
+
+.checkbox-foreground {
+  @include a.tablet {
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    position: absolute;
+    top: -0.25rem;
+    left: 0;
+    border-radius: 50%;
+  }
+}
+
+.list-item-text:hover::before {
+  @include a.tablet {
+    border: none;
+  }
+}
+
+.list-item-text:hover + .checkbox-background {
+  @include a.tablet {
+    display: block;
+  }
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  z-index: 4;
+}
+
+input[type="checkbox"]:checked + .list-item-text::before {
+  background: var(--Check-Background);
+  border: none;
+}
+
+input[type="checkbox"]:checked + .list-item-text {
+  color: var(--Light-theme-checked-text);
+  text-decoration: line-through;
+}
+
+input[type="checkbox"]:checked + .list-item-text::after {
+  display: inline;
+}
+
+.list-item:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.delete-btn {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-image: url("../images/icon-cross.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 11.79px;
+  height: 11.79px;
+}
+
+// .delete-btn img {
+// }
+
+.todo-nav {
+  @include a.flex-row-space-between;
+  font-size: 0.75rem;
+  padding: 1.25rem 1.25rem;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+.todo-container {
+  box-shadow: 0px 20px 20px 0px var(--Light-theme-border-color);
+
+  @include a.tablet {
+    margin-bottom: 3.125rem;
+  }
+}
+
+#clear {
+  cursor: pointer;
+  background-color: rgba($color: #fff, $alpha: 0);
+  border: none;
+  outline: none;
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
+#clear:hover {
+  color: var(--Light-theme-list-text);
+  transition: 0.25s ease-in-out;
+}
+
+.filter-container {
+  display: none;
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: rgba($color: #fff, $alpha: 0);
+    color: inherit;
+    font-weight: 700;
+  }
+
+  button:hover {
+    color: var(--Light-theme-list-text);
+    transition: 0.25s ease-in-out;
+  }
+
+  button:focus {
+    color: var(--Bright-Blue);
+  }
+
+  .all-btn {
+    color: var(--Bright-Blue);
+  }
+  @include a.tablet {
+    display: flex;
+    gap: 1.125rem;
+    transform: translateX(1rem);
+    font-weight: 700;
+  }
+}
+
+.filter-container__mobile {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  background-color: #fff;
+  padding: 1.25rem 0;
+  box-shadow: 0px 10px 20px 0px var(--Light-theme-border-color);
+  border-radius: 5px;
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: rgba($color: #fff, $alpha: 0);
+    color: inherit;
+    font-weight: 700;
+  }
+
+  button:hover {
+    color: var(--Light-theme-list-text);
+    transition: 0.25s ease-in-out;
+  }
+
+  button:focus {
+    color: var(--Bright-Blue);
+  }
+
+  .all-btn {
+    color: var(--Bright-Blue);
+  }
+
+  @include a.tablet {
+    display: none;
+  }
+}
+
+.bottom-text {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+}
